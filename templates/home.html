@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+
+<!-- HERO SECTION -->
+<div class="hero-section d-flex align-items-center">
+
+    <div class="container text-center text-white">
+        <h1 class="fw-bold mb-3 hero-title">
+            Biodiversidad Chilena
+        </h1>
+        <p class="lead mb-4 hero-text">
+            Protege, aprende y participa en la conservación de nuestros ecosistemas.
+        </p>
+
+        <a href="{% url 'educativo' %}" class="btn btn-light btn-lg me-2">
+            Aprender más
+        </a>
+
+        <a href="{% url 'amenazas' %}" class="btn btn-success-custom btn-lg">
+            Ver Amenazas
+        </a>
+    </div>
+
+</div>
+
+
+<!-- SECCIÓN INFORMACIÓN -->
+<div class="container mt-5">
+
+    <h2 class="fw-bold text-primary-custom mb-4 text-center">
+        🌱 Un país lleno de vida
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+            <div class="card info-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark-green">Especies Endémicas</h5>
+                    <p>Más de 1.900 especies de plantas y animales existen solo en Chile.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card info-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark-green">Ecosistemas Únicos</h5>
+                    <p>Desiertos, bosques templados, humedales, cordillera, fiordos y más.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card info-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-dark-green">Amenazas en Crecimiento</h5>
+                    <p>Deforestación, contaminación y especies invasoras aumentan cada año.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- SECCIÓN CTA -->
+<div class="container mt-5 mb-5">
+
+    <div class="alert alert-success-custom shadow-sm">
+        <h4 class="fw-bold">Tu participación es importante</h4>
+        <p>Infórmate, reporta amenazas, aprende sobre especies nativas y contribuye al cambio.</p>
+
+        <a href="{% url 'signup' %}" class="btn btn-primary-custom mt-2">
+            Crear cuenta
+        </a>
+    </div>
+
+</div>
+
+{% endblock %}

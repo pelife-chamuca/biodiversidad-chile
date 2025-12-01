@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container d-flex justify-content-center align-items-center mt-5">
+    <div class="card auth-card shadow">
+
+        <h2 class="text-center mb-4 text-primary-custom fw-bold">
+            Crear Cuenta
+        </h2>
+
+        {% if error %}
+        <div class="alert alert-danger text-center">{{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.nombre.label }}</label>
+                {{ form.nombre }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.email.label }}</label>
+                {{ form.email }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.password.label }}</label>
+                {{ form.password }}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">{{ form.comuna.label }}</label>
+                {{ form.comuna }}
+            </div>
+
+            <button type="submit" class="btn btn-primary-custom w-100 mt-3">
+                Registrarse
+            </button>
+
+        </form>
+
+        <p class="text-center mt-3">
+            ¿Ya tienes cuenta?  
+            <a href="{% url 'logearse' %}" class="link-bio">Inicia sesión aquí</a>
+        </p>
+
+    </div>
+</div>
+
+{% endblock %}

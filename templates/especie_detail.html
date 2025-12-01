@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="card detail-card shadow mb-4">
+        <img src="{{ especie.foto_url }}" class="w-100" style="border-radius:14px 14px 0 0;">
+        <div class="card-body">
+
+            <h2 class="fw-bold text-primary-custom">{{ especie.nombre_comun }}</h2>
+            <p class="text-muted"><i>{{ especie.nombre_cientifico }}</i></p>
+
+            <h5 class="text-dark-green">Descripción</h5>
+            <p>{{ especie.descripcion }}</p>
+
+            {% if request.session.usuario_rol == "Administrador" %}
+            <a href="{% url 'especie_edit' especie.especie_id %}" 
+               class="btn btn-warning">Editar</a>
+            {% endif %}
+
+            <a href="{% url 'especies' %}" class="btn btn-outline-primary-custom">Volver</a>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container mt-4">
+    <h2>Cambiar rol de {{ usuario.nombre }}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <select name="rol" class="form-select">
+            {% for r in roles %}
+            <option value="{{ r }}" {% if usuario.rol == r %}selected{% endif %}>
+                {{ r }}
+            </option>
+            {% endfor %}
+        </select>
+
+        <button class="btn btn-primary mt-3">Guardar</button>
+    </form>
+
+</div>
+
+{% endblock %}

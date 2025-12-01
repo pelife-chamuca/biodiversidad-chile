@@ -1,0 +1,86 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}GBIF - Búsqueda de Especies{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <div class="text-center mb-4">
+        <h1 class="fw-bold text-primary-custom">
+            🔎 Buscar Especie (GBIF)
+        </h1>
+        <p class="text-muted">
+            Consulta información científica de especies a través de la base de datos global GBIF.
+        </p>
+    </div>
+
+    <form method="GET" class="search-box shadow-sm">
+        <div class="input-group">
+            <input type="text" name="q" value="{{ query }}" class="form-control input-bio"
+                   placeholder="Ej: Puma concolor, Pinguino, Araucaria…" required>
+            <button class="btn btn-primary-custom">Buscar</button>
+        </div>
+    </form>
+
+    {% if datos %}
+    <div class="card species-card-pro shadow mt-4">
+
+        <div class="row g-0">
+            <div class="col-md-4">
+                {% if datos.imagen %}
+                <img src="{{ datos.imagen }}" class="img-fluid species-image">
+                {% else %}
+                <img src="https://via.placeholder.com/600x400?text=Sin+Foto+GBIF"
+                     class="img-fluid species-image">
+                {% endif %}
+            </div>
+
+            <div class="col-md-8">
+                <div class="card-body">
+
+                    <h2 class="fw-bold text-primary-custom">
+                        {{ datos.nombre_cientifico }}
+                    </h2>
+
+                    <p><strong>Reino:</strong> {{ datos.reino }}</p>
+                    <p><strong>Familia:</strong> {{ datos.familia }}</p>
+                    <p><strong>Autor:</strong> {{ datos.autor }}</p>
+                    <p><strong>GBIF Key:</strong> {{ datos.key }}</p>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <h3 class="fw-bold text-dark-green mt-5">📍 Registros de Ocurrencia</h3>
+
+    <table class="table table-bordered table-striped mt-3">
+        <thead class="table-success">
+            <tr>
+                <th>Fecha</th>
+                <th>País</th>
+                <th>Coordenadas</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for o in ocurrencias %}
+            <tr>
+                <td>{{ o.eventDate|default:"N/A" }}</td>
+                <td>{{ o.country|default:"N/A" }}</td>
+                <td>{{ o.decimalLatitude }}, {{ o.decimalLongitude }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    {% elif query %}
+    <div class="alert alert-warning mt-4">
+        No se encontraron resultados para "<strong>{{ query }}</strong>".
+    </div>
+    {% endif %}
+
+</div>
+
+{% endblock %}

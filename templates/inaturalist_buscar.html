@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}iNaturalist - Observaciones{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-4">📸 Observaciones (iNaturalist)</h1>
+
+    <form method="GET">
+        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Ej: Puma concolor…" required>
+        <button class="btn btn-primary-custom mt-3">Buscar</button>
+    </form>
+
+    <div class="row mt-4 g-4">
+
+        {% for obs in observaciones %}
+        <div class="col-md-4">
+            <div class="card specie-card shadow-sm">
+
+                {% if obs.photos %}
+                    <img src="{{ obs.photos.0.url }}" class="specie-img">
+                {% else %}
+                    <img src="https://via.placeholder.com/400x300?text=Sin+Foto" class="specie-img">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ obs.taxon.name }}</h5>
+                    <p class="text-muted">
+                        {{ obs.observed_on_details.date|default:"Fecha desconocida" }}
+                    </p>
+
+                    <p><strong>Ubicación:</strong>  
+                        {{ obs.location }}
+                    </p>
+
+                    <a href="https://www.inaturalist.org/observations/{{ obs.id }}" 
+                       target="_blank"
+                       class="btn btn-outline-primary-custom btn-sm">
+                        Ver en iNaturalist
+                    </a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
+{% endblock %}

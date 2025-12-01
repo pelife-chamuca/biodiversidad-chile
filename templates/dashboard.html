@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-4">
+        📊 Dashboard Ambiental
+    </h1>
+
+    <p class="text-muted">
+        Visualiza métricas clave relacionadas con amenazas, especies y participación ciudadana.
+    </p>
+
+    <!-- TARJETAS DE MÉTRICAS -->
+    <div class="row g-4 mt-3">
+
+        <div class="col-md-3">
+            <div class="card metric-card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="fw-bold text-primary-custom">{{ total_amenazas }}</h2>
+                    <p class="metric-text">Amenazas Registradas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card metric-card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="fw-bold text-primary-custom">{{ total_especies }}</h2>
+                    <p class="metric-text">Especies Registradas</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card metric-card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="fw-bold text-primary-custom">{{ total_denuncias }}</h2>
+                    <p class="metric-text">Denuncias</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="card metric-card shadow-sm">
+                <div class="card-body text-center">
+                    <h2 class="fw-bold text-primary-custom">{{ total_avistamientos }}</h2>
+                    <p class="metric-text">Avistamientos</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- GRÁFICOS -->
+    <div class="row mt-5">
+
+        <!-- PIE CHART -->
+        <div class="col-md-6 mb-4">
+            <div class="card graph-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-dark-green fw-bold">Distribución de tipos de amenaza</h5>
+                    <canvas id="amenazasPieChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- BAR CHART -->
+        <div class="col-md-6 mb-4">
+            <div class="card graph-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="text-dark-green fw-bold">Amenazas por categoría</h5>
+                    <canvas id="amenazasBarChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- CHART.JS CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+    // DATOS DEL BACKEND (estos vienen del view)
+    const tiposAmenaza = JSON.parse('{{ tipos_amenaza|safe }}');
+    const cantidadesAmenaza = JSON.parse('{{ cantidad_por_tipo|safe }}');
+
+    // PIE CHART
+    new Chart(document.getElementById('amenazasPieChart'), {
+        type: 'pie',
+        data: {
+            labels: tiposAmenaza,
+            datasets: [{
+                data: cantidadesAmenaza,
+                backgroundColor: [
+                    '#518123', '#99BD49', '#B6D455', '#88B43A', '#BBD394', '#C4CC82'
+                ]
+            }]
+        }
+    });
+
+    // BAR CHART
+    new Chart(document.getElementById('amenazasBarChart'), {
+        type: 'bar',
+        data: {
+            labels: tiposAmenaza,
+            datasets: [{
+                label: 'Cantidad',
+                data: cantidadesAmenaza,
+                backgroundColor: '#518123'
+            }]
+        },
+        options: {
+            scales: {
+                y: { beginAtZero: true }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

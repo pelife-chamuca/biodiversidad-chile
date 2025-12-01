@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% block title %}Editar Amenaza{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2>Editar amenaza ambiental</h2>
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_amenaza_id" class="form-label">ID de Amenaza</label>
+            {{ form.amenaza_id }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_nombre" class="form-label">Nombre</label>
+            {{ form.nombre }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_tipo" class="form-label">Tipo de amenaza</label>
+            {{ form.tipo }}
+        </div>
+
+        <div class="mb-3">
+            <label for="id_descripcion" class="form-label">Descripción</label>
+            {{ form.descripcion }}
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar cambios</button>
+        <a href="{% url 'amenaza_detail' amenaza.amenaza_id %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+
+    {% if error %}
+        <div class="alert alert-danger mt-3">{{ error }}</div>
+    {% endif %}
+</div>
+{% endblock %}

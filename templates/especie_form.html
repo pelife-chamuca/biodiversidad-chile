@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-4">
+        {{ title }}
+    </h1>
+
+    <div class="card form-card shadow">
+        <div class="card-body">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label>Nombre Científico</label>
+                    {{ form.nombre_cientifico }}
+                </div>
+
+                <div class="mb-3">
+                    <label>Nombre Común</label>
+                    {{ form.nombre_comun }}
+                </div>
+
+                <div class="mb-3">
+                    <label>Grupo Taxonómico</label>
+                    {{ form.grupo_taxonomico }}
+                </div>
+
+                <div class="mb-3">
+                    <label>Foto (URL)</label>
+                    {{ form.foto_url }}
+                </div>
+
+                <div class="mb-3">
+                    <label>Descripción</label>
+                    {{ form.descripcion }}
+                </div>
+
+                <button class="btn btn-primary-custom w-100">{{ button }}</button>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

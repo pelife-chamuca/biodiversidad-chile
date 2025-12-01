@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Educación Ambiental{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <!-- Título -->
+    <h1 class="fw-bold text-primary-custom mb-4">
+        🌱 Educación Ambiental
+    </h1>
+
+    <p class="text-muted">
+        Aprende sobre la biodiversidad chilena, sus ecosistemas, especies nativas y las amenazas que enfrentan.
+        Esta sección busca informar y motivar la participación ciudadana en la conservación ambiental.
+    </p>
+
+    <!-- SECCIÓN 1: Tarjetas educativas -->
+    <h3 class="mt-5 text-dark-green fw-bold">Conceptos Clave</h3>
+
+    <div class="row g-4 mt-1">
+
+        <div class="col-md-4">
+            <div class="card edu-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-primary-custom">Biodiversidad</h5>
+                    <p>
+                        Variedad de formas de vida presentes en un lugar. Chile posee una enorme riqueza de
+                        especies endémicas gracias a su aislamiento geográfico.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card edu-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-primary-custom">Ecosistemas</h5>
+                    <p>
+                        Conjunto de organismos y su entorno. Desde desiertos extremos hasta bosques templados húmedos,
+                        Chile posee una diversidad única de ecosistemas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card edu-card shadow-sm">
+                <div class="card-body">
+                    <h5 class="fw-bold text-primary-custom">Amenazas Ambientales</h5>
+                    <p>
+                        Incluyen deforestación, contaminación, cambio climático y especies invasoras. Conocerlas es el
+                        primer paso para combatirlas.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SECCIÓN 2: Video educativo -->
+    <h3 class="mt-5 text-dark-green fw-bold">Video Recomendado</h3>
+
+    <div class="ratio ratio-16x9 mt-3">
+        <iframe src="https://www.youtube.com/embed/BHACSGp_Wf0"
+                title="Educación Ambiental"
+                allowfullscreen
+                class="rounded shadow-sm">
+        </iframe>
+    </div>
+
+    <!-- SECCIÓN 3: Datos interesantes -->
+    <h3 class="mt-5 text-dark-green fw-bold">Datos Interesantes</h3>
+
+    <ul class="list-group list-group-flush edu-list mt-2">
+
+        <li class="list-group-item">
+            🌿 Chile tiene más de <strong>1.900 especies de plantas endémicas</strong>.
+        </li>
+
+        <li class="list-group-item">
+            🦊 El país cuenta con <strong>960 especies en categoría de amenaza</strong>.
+        </li>
+
+        <li class="list-group-item">
+            🐦 El <strong>picaflor de Arica</strong> se considera una de las aves más amenazadas del mundo.
+        </li>
+
+        <li class="list-group-item">
+            🌳 Más de <strong>1 millón de hectáreas de bosque nativo</strong> se han perdido en dos décadas.
+        </li>
+
+    </ul>
+
+    <!-- SECCIÓN 4: Call to action -->
+    <div class="alert alert-success-custom mt-5 shadow-sm">
+        <h4 class="fw-bold">¿Sabías que puedes contribuir?</h4>
+        <p>
+            Puedes reportar observaciones, registrar amenazas ambientales o participar en campañas locales de
+            restauración ecológica. ¡Tu acción importa!
+        </p>
+        <a href="{% url 'amenazas' %}" class="btn btn-primary-custom mt-2">Ver amenazas ambientales</a>
+    </div>
+
+
+</div>
+
+{% endblock %}

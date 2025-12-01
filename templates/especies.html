@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Especies{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-3">🐾 Especies Registradas</h1>
+
+    {% if request.session.usuario_rol == "Administrador" %}
+    <div class="text-end mb-3">
+        <a href="{% url 'especie_create' %}" class="btn btn-success-custom">
+            + Agregar Especie
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        {% for e in especies %}
+        <div class="col-md-4">
+            <div class="card specie-card shadow-sm">
+
+                {% if e.foto_url %}
+                <img src="{{ e.foto_url }}" class="card-img-top specie-img">
+                {% else %}
+                <img src="https://via.placeholder.com/600x400?text=Sin+Foto" class="card-img-top specie-img">
+                {% endif %}
+
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ e.nombre_comun }}</h5>
+                    <p class="text-muted"><i>{{ e.nombre_cientifico }}</i></p>
+
+                    <a href="{% url 'especie_detail' e.especie_id %}"
+                       class="btn btn-outline-primary-custom btn-sm">Ver</a>
+
+                    {% if request.session.usuario_rol == "Administrador" %}
+                    <a href="{% url 'especie_edit' e.especie_id %}"
+                       class="btn btn-warning btn-sm">Editar</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-muted text-center mt-5">No hay especies registradas.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}

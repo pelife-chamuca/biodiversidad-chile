@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Mapa de Amenazas{% endblock %}
+
+{% block content %}
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-4">
+        🗺️ Mapa Interactivo de Amenazas
+    </h1>
+
+    <p class="text-muted">
+        Visualiza las amenazas ambientales registradas en Chile. Cada marcador representa una amenaza.
+    </p>
+
+    <div id="map" style="height: 600px; border-radius: 14px; border: 2px solid var(--color-olive);"></div>
+
+</div>
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+    // DATA DEL BACKEND
+    const amenazas = JSON.parse('{{ amenazas_json|safe }}');
+
+    // INICIALIZAR MAPA
+    const map = L.map('map').setView([-33.45, -70.66], 5); // Chile centrado
+
+    // CAPA BASE
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+
+    // ICONO VERDE PERSONALIZADO
+    const greenIcon = L.icon({
+        iconUrl: 'https://cdn-icons-png.flaticon.com/512/684/684908.png',
+        iconSize: [32, 32],
+        iconAnchor: [16, 32],
+        popupAnchor: [0, -30]
+    });
+
+    // AGREGAR MARCADORES
+    amenazas.forEach(a => {
+        if (a.lat && a.lon) {
+            L.marker([a.lat, a.lon], { icon: greenIcon })
+                .addTo(map)
+                .bindPopup(`
+                    <b>${a.nombre}</b><br>
+                    <span style="color: green;"><b>${a.tipo}</b></span><br>
+                    <p style="margin-top:5px;">${a.descripcion}</p>
+                `);
+        }
+    });
+</script>
+
+{% endblock %}

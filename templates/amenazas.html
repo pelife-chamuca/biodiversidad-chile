@@ -1,0 +1,80 @@
+{% extends 'base.html' %}
+{% block title %}Amenazas a la Biodiversidad{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    <h1 class="mb-4 fw-bold text-primary-custom">
+        🌱 Amenazas a la Biodiversidad Chilena
+    </h1>
+
+    <p class="text-muted mb-4">
+        Estas son las amenazas que afectan nuestros ecosistemas. Infórmate y ayuda a proteger la biodiversidad.
+    </p>
+
+    {% if request.session.usuario_rol == "Administrador" %}
+    <div class="text-end mb-4">
+        <a href="/amenazas/create" class="btn btn-success-custom">
+            + Registrar nueva amenaza
+        </a>
+    </div>
+    {% endif %}
+
+    <div class="row g-4">
+        {% for a in amenazas %}
+
+        <div class="col-md-4">
+            <div class="card card-amenaza shadow-sm h-100">
+
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-dark-green">
+                        {{ a.nombre }}
+                    </h5>
+
+                    <span class="badge bg-biodiv">
+                        {{ a.tipo }}
+                    </span>
+
+                    <p class="card-text mt-2">
+                        {{ a.descripcion|truncatewords:20 }}
+                    </p>
+
+                    <a href="{% url 'amenaza_detail' a.amenaza_id %}" 
+                       class="btn btn-sm btn-outline-primary-custom">
+                        Ver detalle
+                    </a>
+
+                    {% if request.session.usuario_rol == "Administrador" %}
+                    <div class="mt-3 d-flex justify-content-between">
+
+                        <a href="{% url 'amenaza_edit' a.amenaza_id %}" 
+                           class="btn btn-warning btn-sm">
+                            Editar
+                        </a>
+
+                        <form action="{% url 'amenaza_eliminar' a.amenaza_id %}" 
+                              method="POST">
+                            {% csrf_token %}
+                            <button class="btn btn-danger btn-sm"
+                                    onclick="return confirm('¿Eliminar esta amenaza?');">
+                                Eliminar
+                            </button>
+                        </form>
+
+                    </div>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        {% empty %}
+        <p class="text-center text-muted mt-5">No hay amenazas registradas.</p>
+        {% endfor %}
+    </div>
+
+</div>
+
+{% endblock %}
+

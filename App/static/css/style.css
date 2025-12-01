@@ -1,0 +1,333 @@
+/* PALETA PRINCIPAL */
+:root {
+    --color-primary: #518123;
+    --color-secondary: #99BD49;
+    --color-light: #B6D455;
+    --color-soft: #EBF7A9;
+    --color-dark: #225808;
+    --color-deep: #0C1805;
+    --color-mid: #8ABB63;
+    --color-vibrant: #88B43A;
+    --color-pale: #BBD394;
+    --color-olive: #C4CC82;
+}
+
+/* BODY GENERAL */
+body {
+    background-color: var(--color-soft);
+    color: var(--color-deep);
+    font-family: "Inter", sans-serif;
+}
+
+/* NAVBAR */
+.navbar-custom {
+    background-color: var(--color-primary);
+}
+
+.navbar-custom .nav-link,
+.navbar-custom .navbar-brand {
+    color: white !important;
+    font-weight: 500;
+}
+
+.navbar-custom .nav-link:hover {
+    color: var(--color-light) !important;
+}
+
+.navbar-toggler {
+    border-color: white !important;
+}
+
+.navbar-toggler-icon {
+    filter: brightness(0) invert(1);
+}
+
+
+/* BOTONES */
+.btn-primary {
+    background-color: var(--color-primary) !important;
+    border-color: var(--color-dark) !important;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-secondary) !important;
+}
+
+/* Tarjetas */
+.card {
+    border-radius: 12px;
+    border: 1px solid var(--color-olive);
+    background: white;
+}
+
+/* Titulos */
+h1, h2, h3, h4, h5 {
+    color: var(--color-dark);
+}
+
+/* Tablas */
+.table thead {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.table tbody tr:hover {
+    background-color: var(--color-pale);
+}
+
+/* Links */
+a {
+    color: var(--color-primary);
+}
+
+a:hover {
+    color: var(--color-dark);
+}
+
+.text-primary-custom {
+    color: var(--color-primary);
+}
+
+.text-dark-green {
+    color: var(--color-dark);
+}
+
+.btn-success-custom {
+    background-color: var(--color-secondary);
+    border: none;
+    color: var(--color-deep);
+    font-weight: 600;
+}
+
+.btn-success-custom:hover {
+    background-color: var(--color-light);
+}
+
+.card-amenaza {
+    border: 1px solid var(--color-olive);
+    background: white;
+    border-radius: 12px;
+}
+
+.card-amenaza:hover {
+    transform: translateY(-3px);
+    transition: 0.2s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.bg-biodiv {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-outline-primary-custom {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+}
+
+.btn-outline-primary-custom:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.auth-card {
+    width: 420px;
+    background: white;
+    padding: 30px;
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.input-bio {
+    border: 1px solid var(--color-olive);
+    background-color: #FAFFE8;
+}
+
+.input-bio:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 6px rgba(81,129,35,0.3);
+}
+
+.btn-primary-custom {
+    background-color: var(--color-primary) !important;
+    border: none;
+    font-weight: 600;
+    color: white;
+}
+
+.btn-primary-custom:hover {
+    background-color: var(--color-secondary) !important;
+}
+
+.link-bio {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+.link-bio:hover {
+    color: var(--color-dark);
+}
+
+.detail-card {
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+    background-color: white;
+    padding: 25px;
+}
+
+.description-box {
+    background: var(--color-soft);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid var(--color-olive);
+}
+
+.text-primary-custom {
+    color: var(--color-primary);
+}
+
+.text-dark-green {
+    color: var(--color-dark);
+}
+
+.bg-biodiv {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn-outline-primary-custom {
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    font-weight: 500;
+}
+
+.btn-outline-primary-custom:hover {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.edu-card {
+    border: 1px solid var(--color-olive);
+    background: white;
+    border-radius: 12px;
+}
+
+.edu-card p {
+    color: var(--color-deep);
+}
+
+.edu-list .list-group-item {
+    background-color: var(--color-soft);
+    border-left: 6px solid var(--color-primary);
+    margin-bottom: 5px;
+}
+
+.alert-success-custom {
+    background-color: var(--color-pale);
+    border-left: 5px solid var(--color-primary);
+    border-radius: 10px;
+    padding: 20px;
+}
+
+/* HERO SECTION */
+.hero-section {
+    height: 70vh;
+    background: linear-gradient(
+        rgba(12, 24, 5, 0.5),
+        rgba(12, 24, 5, 0.7)
+    ),
+    url('https://images.pexels.com/photos/36030/marguerite-daisy-beautiful-beauty.jpg') no-repeat center center/cover;
+    border-radius: 12px;
+}
+
+.hero-title {
+    font-size: 3rem;
+}
+
+.hero-text {
+    font-size: 1.2rem;
+}
+
+/* INFO CARDS */
+.info-card {
+    background: white;
+    border-radius: 12px;
+    border: 1px solid var(--color-olive);
+}
+
+.info-card p {
+    color: var(--color-deep);
+}
+
+.metric-card {
+    background: white;
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.metric-text {
+    color: var(--color-deep);
+}
+
+.graph-card {
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+canvas {
+    margin-top: 15px;
+}
+
+#map {
+    margin-top: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-card {
+    border: 1px solid var(--color-olive);
+    border-radius: 14px;
+    padding: 25px;
+    background: white;
+}
+
+.form-card label {
+    color: var(--color-dark);
+    font-weight: 600;
+}
+
+.form-card input,
+.form-card select,
+.form-card textarea {
+    background-color: #FAFFE8;
+    border: 1px solid var(--color-olive);
+}
+
+.specie-card {
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.specie-img {
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+    height: 230px;
+    object-fit: cover;
+}
+
+.search-box {
+    background: var(--color-soft);
+    padding: 20px;
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.species-card-pro {
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.species-image {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 14px 0 0 14px;
+}

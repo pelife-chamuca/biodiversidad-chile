@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+{% load static %}
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Conciencia por la Biodiversidad{% endblock %}</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+
+
+</head>
+
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-custom shadow-sm mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="{% url 'home' %}">
+        🌱 Biodiversidad Chile
+      </a>
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navMenu">
+
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'amenazas' %}">Amenazas</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'educativo' %}">Educación</a>
+          </li>
+
+          {% if request.session.usuario_rol == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+          </li>
+          {% endif %}
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'mapa' %}">Mapa</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'gbif_especie' %}">Buscar Especie (GBIF)</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'inaturalist_buscar' %}">iNaturalist</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'especies' %}">Especies</a>
+          </li>
+
+          {% if request.session.usuario_rol == "Administrador" %}
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'panel_admin' %}">Panel Admin</a>
+          </li>
+
+          {% endif %}
+
+        </ul>
+
+        <!-- PARTE DERECHA -->
+        <ul class="navbar-nav ms-auto">
+
+          {% if request.session.usuario_id %}
+
+          <li class="nav-item d-flex align-items-center me-3 text-white">
+            <span class="fw-semibold">
+              👋 Hola, {{ request.session.usuario_nombre }}
+            </span>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-light btn-sm" href="{% url 'logout' %}">
+              Cerrar sesión
+            </a>
+          </li>
+
+          {% else %}
+
+          <li class="nav-item me-2">
+            <a class="btn btn-light btn-sm" href="{% url 'logearse' %}">
+              Iniciar sesión
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a class="btn btn-success btn-sm" href="{% url 'signup' %}">
+              Registrarse
+            </a>
+          </li>
+
+          {% endif %}
+
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+  {% block content %}{% endblock %}
+
+  <footer>
+    Proyecto “Conciencia ciudadana por la biodiversidad chilena” — Analista Programador © 2025
+  </footer>
+</body>
+
+</html>

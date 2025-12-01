@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Crear Amenaza{% endblock %}
+
+{% block content %}
+
+<div class="container mt-4">
+
+    <h1 class="fw-bold text-primary-custom mb-4">🌱 Registrar Nueva Amenaza</h1>
+
+    <div class="card form-card shadow">
+        <div class="card-body">
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">ID</label>
+                    {{ form.amenaza_id }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Nombre</label>
+                    {{ form.nombre }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Tipo de Amenaza</label>
+                    {{ form.tipo }}
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Descripción</label>
+                    {{ form.descripcion }}
+                </div>
+
+                <button class="btn btn-primary-custom w-100 mt-3">Guardar</button>
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}
