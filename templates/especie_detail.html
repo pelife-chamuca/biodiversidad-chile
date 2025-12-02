@@ -19,6 +19,14 @@
                class="btn btn-warning">Editar</a>
             {% endif %}
 
+            {% if request.session.usuario_rol == "Administrador" %}
+                <a href="{% url 'especie_delete' especie.especie_id %}"
+                class="btn btn-danger mt-2">
+                    Eliminar
+                </a>
+            {% endif %}
+           
+
             <a href="{% url 'especies' %}" class="btn btn-outline-primary-custom">Volver</a>
 
         </div>

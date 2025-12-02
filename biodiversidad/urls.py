@@ -34,6 +34,7 @@ urlpatterns = [
     path('especies/create/', views.especie_create, name='especie_create'),
     path('especies/<int:especie_id>/', views.especie_detail, name='especie_detail'),
     path('especies/<int:especie_id>/edit/', views.especie_edit, name='especie_edit'),
+    path('especies/<int:especie_id>/delete/', views.especie_delete, name='especie_delete'),
 
     #PARA BUSCAR ESPECIES GBIF
     path('gbif/especie/', views.gbif_especie, name='gbif_especie'),
