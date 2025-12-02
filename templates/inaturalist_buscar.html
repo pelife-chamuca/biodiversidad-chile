@@ -6,38 +6,53 @@
 
 <div class="container mt-4">
 
-    <h1 class="fw-bold text-primary-custom mb-4">📸 Observaciones (iNaturalist)</h1>
+    <h1 class="fw-bold text-primary-custom mb-4">📸 Observaciones en Chile (iNaturalist)</h1>
 
     <form method="GET">
-        <input type="text" name="q" value="{{ query }}" class="form-control" placeholder="Ej: Puma concolor…" required>
+        <input type="text" name="q" value="{{ query }}" class="form-control input-bio"
+               placeholder="Ej: Puma concolor, Picaflor…" required>
         <button class="btn btn-primary-custom mt-3">Buscar</button>
     </form>
 
-    <div class="row mt-4 g-4">
+    {% if stats %}
+    <div class="alert alert-success-custom mt-4 shadow-sm">
+        <h4 class="fw-bold text-dark-green">📊 Estadísticas</h4>
+        <ul>
+            <li>Observaciones totales: <strong>{{ stats.total_obs }}</strong></li>
+            <li>Con foto: <strong>{{ stats.con_foto }}</strong></li>
+            <li>Con coordenadas: <strong>{{ stats.con_geo }}</strong></li>
+        </ul>
+    </div>
+    {% endif %}
 
+    {% if mapa_data %}
+    <h3 class="text-dark-green fw-bold mt-4">📍 Mapa de Avistamientos</h3>
+
+    <div id="map" style="height: 500px; border-radius: 14px;"></div>
+    {% endif %}
+
+    <h3 class="fw-bold text-dark-green mt-5">Resultados</h3>
+
+    <div class="row mt-3 g-4">
         {% for obs in observaciones %}
         <div class="col-md-4">
             <div class="card specie-card shadow-sm">
 
                 {% if obs.photos %}
                     <img src="{{ obs.photos.0.url }}" class="specie-img">
+
                 {% else %}
-                    <img src="https://via.placeholder.com/400x300?text=Sin+Foto" class="specie-img">
+                    <img src="https://via.placeholder.com/400x300?text=Sin+Foto"
+                         class="specie-img">
                 {% endif %}
 
                 <div class="card-body">
                     <h5 class="fw-bold">{{ obs.taxon.name }}</h5>
-                    <p class="text-muted">
-                        {{ obs.observed_on_details.date|default:"Fecha desconocida" }}
-                    </p>
+                    <p class="text-muted">{{ obs.observed_on_details.date|default:"Fecha desconocida" }}</p>
+                    <p><strong>Ubicación:</strong> {{ obs.location }}</p>
 
-                    <p><strong>Ubicación:</strong>  
-                        {{ obs.location }}
-                    </p>
-
-                    <a href="https://www.inaturalist.org/observations/{{ obs.id }}" 
-                       target="_blank"
-                       class="btn btn-outline-primary-custom btn-sm">
+                    <a href="https://www.inaturalist.org/observations/{{ obs.id }}"
+                       target="_blank" class="btn btn-outline-primary-custom btn-sm">
                         Ver en iNaturalist
                     </a>
                 </div>
@@ -45,9 +60,31 @@
             </div>
         </div>
         {% endfor %}
-
     </div>
 
 </div>
 
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+{% if mapa_data %}
+<script>
+    const puntos = JSON.parse('{{ mapa_data|safe }}');
+
+    const map = L.map("map").setView([-33.45, -70.66], 5);
+
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png").addTo(map);
+
+    puntos.forEach(p => {
+        L.marker([p.lat, p.lon]).addTo(map).bindPopup(`
+            <strong>${p.nombre}</strong><br>
+            ${p.fecha}<br>
+            ${p.foto ? `<img src="${p.foto}" width="200">` : "Sin foto"}
+        `);
+    });
+</script>
+{% endif %}
+
 {% endblock %}
+

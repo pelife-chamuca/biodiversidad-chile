@@ -294,20 +294,50 @@ def gbif_especie(request):
         "query": nombre
     })
 
-#INATURALIST
 def inaturalist_buscar(request):
     nombre = request.GET.get("q", None)
-    observaciones = None
+
+    observaciones = []
+    mapa_data = []
+    stats = None
 
     if nombre:
-        url = f"https://api.inaturalist.org/v1/observations?taxon_name={nombre}&per_page=20"
+        url = (
+            "https://api.inaturalist.org/v1/observations"
+            f"?taxon_name={nombre}&per_page=50&place_code=CL"
+        )
+
         response = requests.get(url, verify=False).json()
         observaciones = response.get("results", [])
 
+        for obs in observaciones:
+            foto = None
+            if obs.get("photos"):
+                # AQUÍ SE CORRIGE EL replace
+                foto = obs["photos"][0]["url"].replace("square", "large")
+
+            if obs.get("geojson"):
+                mapa_data.append({
+                    "lat": obs["geojson"]["coordinates"][1],
+                    "lon": obs["geojson"]["coordinates"][0],
+                    "foto": foto,
+                    "nombre": obs["taxon"]["name"] if obs.get("taxon") else nombre,
+                    "fecha": obs.get("observed_on_details", {}).get("date", "N/A")
+                })
+
+        stats = {
+            "total_obs": len(observaciones),
+            "con_foto": len([o for o in observaciones if o.get("photos")]),
+            "con_geo": len(mapa_data),
+        }
+
     return render(request, "inaturalist_buscar.html", {
         "observaciones": observaciones,
+        "mapa_data": json.dumps(mapa_data),
+        "stats": stats,
         "query": nombre
     })
+
 
 @usuario_login_requerido
 @rol_requerido('Administrador')
