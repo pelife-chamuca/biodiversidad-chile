@@ -10,7 +10,7 @@ SECRET_KEY = os.getenv("SECRET_KEY")
 
 DEBUG = os.getenv("DEBUG") == "True"
 
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", "biodiversidad-chile-ps.onrender.com"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "biodiversidad-chile-ps.onrender.com","biodiversidad-chile-ps.onrender.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -114,3 +114,9 @@ LOGIN_REDIRECT_URL = "/amenazas/"
 LOGOUT_REDIRECT_URL = "/home/"
 
 STATIC_ROOT = BASE_DIR / "staticfiles"
+
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static',
+]
