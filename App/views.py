@@ -21,12 +21,71 @@ import requests
 import urllib3
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 import json
-
+from .models import Amenaza
+import random
 
 
 # Página principal
 def home(request):
-    return render(request, "home.html")
+
+    # AMENAZA DEL DÍA (si hay amenazas en la BD)
+    amenazas = Amenaza.objects.all()
+    amenaza_dia = random.choice(amenazas) if amenazas else None
+
+    # TOP 10 ESPECIES AMENAZADAS EN CHILE (fijas por ahora)
+ranking_especies = [
+    {
+        "nombre": "Picaflor de Arica",
+        "estado": "En Peligro Crítico",
+        "imagen": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Huemul",
+        "estado": "En Peligro",
+        "imagen": "https://images.unsplash.com/photo-1528543606781-dd1fb9425d4e?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Gato Andino",
+        "estado": "En Peligro",
+        "imagen": "https://images.unsplash.com/photo-1598136490959-0c971532d34d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Rana Chilena",
+        "estado": "Vulnerable",
+        "imagen": "https://images.unsplash.com/photo-1452716726610-30ed68426a6b?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Ranita de Darwin",
+        "estado": "En Peligro",
+        "imagen": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Puma",
+        "estado": "Preocupación menor",
+        "imagen": "https://images.unsplash.com/photo-1578326455194-40c9e02dc0db?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Cóndor Andino",
+        "estado": "Casi amenazado",
+        "imagen": "https://images.unsplash.com/photo-1601987077570-61e24d90211d?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Pudú",
+        "estado": "Vulnerable",
+        "imagen": "https://images.unsplash.com/photo-1552410260-36733a0b71b8?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Zorro Culpeo",
+        "estado": "Preocupación menor",
+        "imagen": "https://images.unsplash.com/photo-1598965675043-f633b8dcf4a7?auto=format&fit=crop&w=800&q=80"
+    },
+    {
+        "nombre": "Chungungo",
+        "estado": "En Peligro",
+        "imagen": "https://images.unsplash.com/photo-1580176638294-c4995c3a4bba?auto=format&fit=crop&w=800&q=80"
+    },
+]
+
 
 # Registro de usuario
 def signup(request):

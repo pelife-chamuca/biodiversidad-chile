@@ -27,6 +27,55 @@
 
 </div>
 
+<!-- AMENAZA DEL DÍA -->
+<div class="container mt-5">
+
+    <div class="card shadow-sm alert-success-custom p-4">
+        <h2 class="fw-bold text-dark-green mb-3">🔥 Amenaza del Día</h2>
+
+        {% if amenaza_dia %}
+            <h4 class="fw-bold">{{ amenaza_dia.nombre }}</h4>
+            <span class="badge bg-biodiv">{{ amenaza_dia.tipo }}</span>
+
+            <p class="mt-3">{{ amenaza_dia.descripcion|truncatewords:30 }}</p>
+
+            <a href="{% url 'amenaza_detail' amenaza_dia.amenaza_id %}"
+               class="btn btn-primary-custom mt-2">
+               Ver más
+            </a>
+        {% else %}
+            <p>No hay amenazas registradas aún.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+<!-- RANKING ESPECIES AMENAZADAS -->
+<div class="container mt-5">
+
+    <h2 class="fw-bold text-primary-custom mb-4">🏆 Top 10 Especies Amenazadas de Chile</h2>
+
+    <div class="row g-4">
+
+        {% for item in ranking %}
+        <div class="col-md-4">
+            <div class="card specie-card shadow-sm h-100">
+
+                <img src="{{ item.imagen }}" class="specie-img">
+
+                <div class="card-body">
+                    <h5 class="fw-bold">{{ item.nombre }}</h5>
+                    <span class="badge bg-danger">{{ item.estado }}</span>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %}
+
+    </div>
+
+</div>
+
 
 <!-- SECCIÓN INFORMACIÓN -->
 <div class="container mt-5">

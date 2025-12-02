@@ -110,3 +110,5 @@ SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 LOGIN_URL = '/logearse/'
 LOGIN_REDIRECT_URL = '/amenazas/'
 LOGOUT_REDIRECT_URL = '/home/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"

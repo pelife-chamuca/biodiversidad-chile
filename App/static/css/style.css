@@ -341,3 +341,27 @@ canvas {
 #map {
     box-shadow: 0 4px 10px rgba(0,0,0,0.15);
 }
+
+/* Amenaza del día */
+.alert-success-custom {
+    background-color: var(--color-soft);
+    border-left: 6px solid var(--color-primary);
+    border-radius: 14px;
+}
+
+.bg-biodiv {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+/* Ranking */
+.specie-card {
+    border-radius: 14px;
+    border: 1px solid var(--color-olive);
+}
+
+.specie-img {
+    border-radius: 14px 14px 0 0;
+    height: 220px;
+    object-fit: cover;
+}
