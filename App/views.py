@@ -33,59 +33,63 @@ def home(request):
     amenaza_dia = random.choice(amenazas) if amenazas else None
 
     # TOP 10 ESPECIES AMENAZADAS EN CHILE (fijas por ahora)
-ranking_especies = [
-    {
-        "nombre": "Picaflor de Arica",
-        "estado": "En Peligro Crítico",
-        "imagen": "https://images.unsplash.com/photo-1502082553048-f009c37129b9?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Huemul",
-        "estado": "En Peligro",
-        "imagen": "https://images.unsplash.com/photo-1528543606781-dd1fb9425d4e?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Gato Andino",
-        "estado": "En Peligro",
-        "imagen": "https://images.unsplash.com/photo-1598136490959-0c971532d34d?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Rana Chilena",
-        "estado": "Vulnerable",
-        "imagen": "https://images.unsplash.com/photo-1452716726610-30ed68426a6b?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Ranita de Darwin",
-        "estado": "En Peligro",
-        "imagen": "https://images.unsplash.com/photo-1534088568595-a066f410bcda?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Puma",
-        "estado": "Preocupación menor",
-        "imagen": "https://images.unsplash.com/photo-1578326455194-40c9e02dc0db?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Cóndor Andino",
-        "estado": "Casi amenazado",
-        "imagen": "https://images.unsplash.com/photo-1601987077570-61e24d90211d?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Pudú",
-        "estado": "Vulnerable",
-        "imagen": "https://images.unsplash.com/photo-1552410260-36733a0b71b8?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Zorro Culpeo",
-        "estado": "Preocupación menor",
-        "imagen": "https://images.unsplash.com/photo-1598965675043-f633b8dcf4a7?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-        "nombre": "Chungungo",
-        "estado": "En Peligro",
-        "imagen": "https://images.unsplash.com/photo-1580176638294-c4995c3a4bba?auto=format&fit=crop&w=800&q=80"
-    },
-]
+    ranking_especies = [
+        {
+            "nombre": "Picaflor de Arica",
+            "estado": "En Peligro Crítico",
+            "imagen": "https://www.google.com/imgres?q=picaflor%20de%20arica&imgurl=https%3A%2F%2Fmma.gob.cl%2Fwp-content%2Fuploads%2F2022%2F04%2FPicaflor-de-Arica-Jorge-Herreros-dd.jpg&imgrefurl=https%3A%2F%2Fmma.gob.cl%2Fse-publica-plan-de-recuperacion-conservacion-y-gestion-recoge-del-picaflor-de-arica%2F&docid=pddSRoQYeu8IZM&tbnid=uJ7T8EcY4xjObM&vet=12ahUKEwiX8J_j152RAxVWOrkGHRKSOPEQM3oECBsQAA..i&w=2048&h=1365&hcb=2&ved=2ahUKEwiX8J_j152RAxVWOrkGHRKSOPEQM3oECBsQAA"
+        },
+        {
+            "nombre": "Huemul",
+            "estado": "En Peligro",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/53/Huemul_%28Hippocamelus_bisulcus%29.jpg"
+        },
+        {
+            "nombre": "Gato Andino",
+            "estado": "En Peligro",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Leopardus_jacobita_2.jpg"
+        },
+        {
+            "nombre": "Rana Chilena",
+            "estado": "Vulnerable",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Calyptocephalella_gayi.jpg"
+        },
+        {
+            "nombre": "Ranita de Darwin",
+            "estado": "En Peligro",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Chiloe_Wudl_2.jpg"
+        },
+        {
+            "nombre": "Puma",
+            "estado": "Preocupación menor",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Puma_concolor_-_Ravine_Hall_-_Chester_Zoo%2C_England.jpg"
+        },
+        {
+            "nombre": "Cóndor Andino",
+            "estado": "Casi amenazado",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Condor_peru.jpg"
+        },
+        {
+            "nombre": "Pudú",
+            "estado": "Vulnerable",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Pudu_pudu.jpg"
+        },
+        {
+            "nombre": "Zorro Culpeo",
+            "estado": "Preocupación menor",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Lycalopex_culpeus_%28Zorro_Culpeo%29.jpg"
+        },
+        {
+            "nombre": "Chungungo",
+            "estado": "En Peligro",
+            "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/35/Lontra_felina.jpg"
+        },
+    ]
 
+    return render(request, "home.html", {
+        "amenaza_dia": amenaza_dia,
+        "ranking": ranking_especies
+    })
 
 # Registro de usuario
 def signup(request):
