@@ -422,27 +422,48 @@ def inaturalist_buscar(request):
 
 @usuario_login_requerido
 @rol_requerido('Administrador')
-def panel_admin(request):
+def usuarios_list(request):
     usuarios = Usuario.objects.all()
-
-    return render(request, "panel_admin.html", {
-        "usuarios": usuarios
-    })
+    return render(request, "admin_usuarios_list.html", {'usuarios': usuarios})
 
 @usuario_login_requerido
 @rol_requerido('Administrador')
-def cambiar_rol(request, usuario_id):
-    usuario = get_object_or_404(Usuario, pk=usuario_id)
+def usuarios_create(request):
+    if request.method == 'GET':
+        form = UsuarioForm()
+        return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Crear Usuario"})
+    else:
+        form = UsuarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios_list')
+        return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Crear Usuario", 'error': 'Datos inválidos'})
 
-    if request.method == "POST":
-        nuevo_rol = request.POST.get("rol")
-        usuario.rol = nuevo_rol
-        usuario.save()
-        return redirect('panel_admin')
+@usuario_login_requerido
+@rol_requerido('Administrador')
+def usuarios_edit(request, user_id):
+    usuario = get_object_or_404(Usuario, pk=user_id)
+    
+    if request.method == 'GET':
+        form = UsuarioForm(instance=usuario)
+        return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Editar Usuario"})
+    else:
+        form = UsuarioForm(request.POST, instance=usuario)
+        if form.is_valid():
+            form.save()
+            return redirect('usuarios_list')
+        return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Editar Usuario", 'error': 'Datos inválidos'})
 
-    return render(request, "cambiar_rol.html", {
-        "usuario": usuario,
-        "roles": ['Administrador', 'Investigador', 'Usuario']
-    })
+@usuario_login_requerido
+@rol_requerido('Administrador')
+def usuarios_delete(request, user_id):
+    usuario = get_object_or_404(Usuario, pk=user_id)
+
+    if request.method == 'POST':
+        usuario.delete()
+        return redirect('usuarios_list')
+
+    return render(request, "admin_usuarios_delete.html", {'usuario': usuario})
+
 
 #me voy a desvivir

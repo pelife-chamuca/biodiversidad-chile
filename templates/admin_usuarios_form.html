@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="container mt-4">
+    <h1 class="fw-bold text-primary-custom mb-4">{{ title }}</h1>
+
+    <div class="card form-card shadow">
+        <div class="card-body">
+
+            {% if error %}
+                <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+
+                <button class="btn btn-primary-custom w-100 mt-3">Guardar</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

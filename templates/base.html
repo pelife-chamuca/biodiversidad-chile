@@ -29,7 +29,8 @@
       </a>
 
       <!-- Botón hamburguesa -->
-      <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <button class="navbar-toggler text-white border-0" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navMenu">
         <i class="bi bi-list" style="font-size: 1.8rem;"></i>
       </button>
 
@@ -49,9 +50,10 @@
 
           {% if request.session.usuario_rol == "Administrador" %}
           <li class="nav-item">
-            <a class="nav-link text-white" href="{% url 'dashboard' %}">Dashboard</a>
+            <a class="nav-link" href="{% url 'usuarios_list' %}">Usuarios</a>
           </li>
           {% endif %}
+
 
           <li class="nav-item">
             <a class="nav-link text-white" href="{% url 'mapa' %}">Mapa</a>
