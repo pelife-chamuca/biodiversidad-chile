@@ -28,9 +28,14 @@ def home(request):
     amenaza_dia = random.choice(amenazas) if amenazas else None
 
     ranking_especies = [
-        {"nombre": "Picaflor de Arica", "estado": "En Peligro Crítico", "imagen": ""},
-        {"nombre": "Huemul", "estado": "En Peligro",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/5/53/Huemul_%28Hippocamelus_bisulcus%29.jpg"},
+         {
+            "nombre": "Picaflor de Arica",
+            "estado": "En Peligro Crítico",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/5/5b/Eulidia_yarrellii_-_Arica_Hummingbird.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/a/a4/Picaflor_arica.jpg",
+            ],
+        },
         {"nombre": "Gato Andino", "estado": "En Peligro",
          "imagen": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Leopardus_jacobita_2.jpg"},
         {"nombre": "Rana Chilena", "estado": "Vulnerable", "imagen": "ranaChilena.jpg"},
