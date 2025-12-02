@@ -418,8 +418,7 @@ def inaturalist_buscar(request):
 
 # ============================================================
 #                 ADMINISTRACIÓN DE USUARIOS
-# ============================================================
-@usuario_login_requerido
+# ============================================================@usuario_login_requerido
 @rol_requerido("Administrador")
 def usuarios_list(request):
     usuarios = Usuario.objects.all()
@@ -429,11 +428,13 @@ def usuarios_list(request):
 @usuario_login_requerido
 @rol_requerido("Administrador")
 def usuarios_create(request):
+    from .forms import UsuarioAdminForm
+
     if request.method == 'GET':
-        form = UsuarioForm()
+        form = UsuarioAdminForm()
         return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Crear Usuario"})
 
-    form = UsuarioForm(request.POST)
+    form = UsuarioAdminForm(request.POST)
     if form.is_valid():
         form.save()
         return redirect('usuarios_list')
@@ -446,12 +447,13 @@ def usuarios_create(request):
 @rol_requerido("Administrador")
 def usuarios_edit(request, user_id):
     usuario = get_object_or_404(Usuario, pk=user_id)
+    from .forms import UsuarioAdminForm
 
     if request.method == 'GET':
-        form = UsuarioForm(instance=usuario)
+        form = UsuarioAdminForm(instance=usuario)
         return render(request, "admin_usuarios_form.html", {'form': form, 'title': "Editar Usuario"})
 
-    form = UsuarioForm(request.POST, instance=usuario)
+    form = UsuarioAdminForm(request.POST, instance=usuario)
     if form.is_valid():
         form.save()
         return redirect('usuarios_list')
