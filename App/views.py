@@ -37,7 +37,7 @@ def home(request):
         {
             "nombre": "Picaflor de Arica",
             "estado": "En Peligro Crítico",
-            "imagen": "https://www.google.com/imgres?q=picaflor%20de%20arica&imgurl=https%3A%2F%2Fmma.gob.cl%2Fwp-content%2Fuploads%2F2022%2F04%2FPicaflor-de-Arica-Jorge-Herreros-dd.jpg&imgrefurl=https%3A%2F%2Fmma.gob.cl%2Fse-publica-plan-de-recuperacion-conservacion-y-gestion-recoge-del-picaflor-de-arica%2F&docid=pddSRoQYeu8IZM&tbnid=uJ7T8EcY4xjObM&vet=12ahUKEwiX8J_j152RAxVWOrkGHRKSOPEQM3oECBsQAA..i&w=2048&h=1365&hcb=2&ved=2ahUKEwiX8J_j152RAxVWOrkGHRKSOPEQM3oECBsQAA"
+            "imagen": ""
         },
         {
             "nombre": "Huemul",
@@ -52,7 +52,7 @@ def home(request):
         {
             "nombre": "Rana Chilena",
             "estado": "Vulnerable",
-            "imagen": "https://upload.wikimedia.org/wikipedia/commons/2/2a/Calyptocephalella_gayi.jpg"
+            "imagen": "ranaChilena.jpg"
         },
         {
             "nombre": "Ranita de Darwin",
