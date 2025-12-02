@@ -365,3 +365,48 @@ canvas {
     height: 220px;
     object-fit: cover;
 }
+
+.impact-box {
+    background-color: var(--color-soft);
+    border-left: 6px solid var(--color-primary);
+    padding: 20px;
+    border-radius: 14px;
+    min-height: 120px;
+}
+
+/* Micro animación suave */
+.animate-impact {
+    animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.action-card {
+    border: 1px solid var(--color-olive);
+    background: white;
+    border-radius: 14px;
+    transition: transform 0.2s ease;
+}
+
+.action-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Fade-in general */
+.fade-in {
+    animation: fade 0.8s ease;
+}
+
+@keyframes fade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Tarjetas con hover suave */
+.card:hover {
+    transform: scale(1.01);
+    transition: 0.2s ease;
+}

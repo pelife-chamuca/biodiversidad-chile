@@ -70,6 +70,120 @@
                 class="rounded shadow-sm">
         </iframe>
     </div>
+<!-- SIMULADOR DE IMPACTO -->
+<div class="container mt-5">
+
+    <h2 class="fw-bold text-primary-custom mb-4">🧪 Simulador de Impacto Ecológico</h2>
+
+    <p class="text-muted">
+        Selecciona una especie para ver cómo su desaparición afectaría al ecosistema chileno.
+    </p>
+
+    <select id="simulador-select" class="form-control mb-4 input-bio">
+        <option value="">Selecciona una especie...</option>
+        <option value="pudu">Pudú</option>
+        <option value="puma">Puma</option>
+        <option value="condor">Cóndor Andino</option>
+        <option value="picaflor">Picaflor de Arica</option>
+    </select>
+
+    <div id="simulador-result" class="impact-box shadow-sm"></div>
+
+</div>
+
+    <!--Simulador de impacto -->
+    <script>
+        const impactos = {
+            pudu: `
+                <h4 class="fw-bold text-dark-green">🐾 Pudú</h4>
+                <p>Si el pudú desaparece:</p>
+                <ul>
+                    <li>Aumenta el crecimiento de matorrales sin control.</li>
+                    <li>Disminuye la dispersión de semillas.</li>
+                    <li>Se altera el equilibrio del bosque templado chileno.</li>
+                </ul>
+            `,
+            puma: `
+                <h4 class="fw-bold text-dark-green">🐆 Puma</h4>
+                <p>Si el puma desaparece:</p>
+                <ul>
+                    <li>Explota la población de guanacos y liebres.</li>
+                    <li>El sobrepastoreo destruye vegetación nativa.</li>
+                    <li>Aumenta la erosión del suelo.</li>
+                </ul>
+            `,
+            condor: `
+                <h4 class="fw-bold text-dark-green">🦅 Cóndor Andino</h4>
+                <p>Si el cóndor desaparece:</p>
+                <ul>
+                    <li>Se acumulan cadáveres animales en la cordillera.</li>
+                    <li>Se disparan enfermedades zoonóticas.</li>
+                    <li>Se pierde el principal limpiador natural del ecosistema altoandino.</li>
+                </ul>
+            `,
+            picaflor: `
+                <h4 class="fw-bold text-dark-green">🐦 Picaflor de Arica</h4>
+                <p>Si el picaflor desaparece:</p>
+                <ul>
+                    <li>Disminuye la polinización de flores nativas.</li>
+                    <li>Baja la reproducción de plantas esenciales en el desierto.</li>
+                    <li>Se pierde un indicador clave de salud ambiental.</li>
+                </ul>
+            `
+        };
+
+        document.getElementById("simulador-select").addEventListener("change", function() {
+            const value = this.value;
+            const box = document.getElementById("simulador-result");
+
+            if (impactos[value]) {
+                box.innerHTML = impactos[value];
+                box.classList.add("animate-impact");
+            } else {
+                box.innerHTML = "";
+                box.classList.remove("animate-impact");
+            }
+        });
+    </script>
+
+    <!-- QUÉ PUEDO HACER YO -->
+    <div class="container mt-5">
+
+        <h2 class="fw-bold text-primary-custom mb-4">💚 ¿Qué puedo hacer yo?</h2>
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <div class="card action-card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">🌱 Planta nativo</h5>
+                        <p>Elige especies nativas como quillay, peumo y tepa. Atraen fauna y restauran ecosistemas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card action-card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">📸 Reporta avistamientos</h5>
+                        <p>Usa nuestra plataforma o iNaturalist para reportar fauna. Ayuda a generar datos científicos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="card action-card shadow-sm">
+                    <div class="card-body">
+                        <h5 class="fw-bold">🚯 Reduce basura</h5>
+                        <p>Evita plásticos, no dejes residuos en playas o cerros. Protege fauna costera y terrestre.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
 
     <!-- SECCIÓN 3: Datos interesantes -->
     <h3 class="mt-5 text-dark-green fw-bold">Datos Interesantes</h3>
