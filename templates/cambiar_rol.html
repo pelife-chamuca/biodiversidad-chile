@@ -1,23 +1,26 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
-
 <div class="container mt-4">
-    <h2>Cambiar rol de {{ usuario.nombre }}</h2>
+    <h1 class="fw-bold text-primary">Cambiar Rol</h1>
+
+    {% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+    {% endif %}
+
+    <p><strong>Usuario:</strong> {{ usuario.nombre }} ({{ usuario.email }})</p>
 
     <form method="POST">
         {% csrf_token %}
+
+        <label class="form-label">Seleccionar nuevo rol</label>
         <select name="rol" class="form-select">
-            {% for r in roles %}
-            <option value="{{ r }}" {% if usuario.rol == r %}selected{% endif %}>
-                {{ r }}
-            </option>
-            {% endfor %}
+            <option value="Administrador">Administrador</option>
+            <option value="Investigador">Investigador</option>
+            <option value="Usuario">Usuario</option>
         </select>
 
-        <button class="btn btn-primary mt-3">Guardar</button>
+        <button class="btn btn-success mt-3">Guardar cambios</button>
+        <a href="{% url 'usuarios_list' %}" class="btn btn-secondary mt-3">Cancelar</a>
     </form>
-
 </div>
-
 {% endblock %}

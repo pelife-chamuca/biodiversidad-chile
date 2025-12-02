@@ -470,5 +470,25 @@ def usuarios_delete(request, user_id):
 def panel_admin(request):
     return render(request, "panel_admin.html")
 
+@usuario_login_requerido
+@rol_requerido("Administrador")
+def cambiar_rol(request, usuario_id):
+    usuario = get_object_or_404(Usuario, pk=usuario_id)
+
+    if request.method == "POST":
+        nuevo_rol = request.POST.get("rol")
+        
+        if nuevo_rol in ["Administrador", "Investigador", "Usuario"]:
+            usuario.rol = nuevo_rol
+            usuario.save()
+            return redirect("usuarios_list")
+
+        return render(request, "cambiar_rol.html", {
+            "usuario": usuario,
+            "error": "Rol inválido"
+        })
+
+    return render(request, "cambiar_rol.html", {"usuario": usuario})
+
 
 #me voy a desvivir
