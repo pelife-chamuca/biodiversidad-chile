@@ -204,11 +204,12 @@ def amenaza_eliminar(request, amenaza_id):
     return render(request, 'eliminar_amenaza.html', {'amenaza': amenaza})
 
 # Página educativa
+@usuario_login_requerido
 def educativo(request):
     return render(request, 'educacion.html')
 
 #Pagina dashboard
-
+@usuario_login_requerido
 def dashboard(request):
 
     total_amenazas = Amenaza.objects.count()
@@ -234,6 +235,7 @@ def dashboard(request):
 
     return render(request, 'dashboard.html', context)
 
+@usuario_login_requerido
 def mapa_amenazas(request):
     amenazas = Amenaza.objects.all().values("nombre", "tipo", "descripcion", "lat", "lon")
 
@@ -312,6 +314,7 @@ def especie_edit(request, especie_id):
         })
     
 #BUSQUEDA MAS RESULTADO CON GBIF
+@usuario_login_requerido
 def gbif_especie(request):
     nombre = request.GET.get("q", None)
     datos = None
@@ -357,6 +360,7 @@ def gbif_especie(request):
         "query": nombre
     })
 
+@usuario_login_requerido
 def inaturalist_buscar(request):
     nombre = request.GET.get("q", None)
 
