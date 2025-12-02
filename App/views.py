@@ -313,6 +313,20 @@ def especie_edit(request, especie_id):
             "error": "Error al actualizar la especie."
         })
     
+@usuario_login_requerido
+@rol_requerido('Administrador')
+def especie_delete(request, especie_id):
+    especie = get_object_or_404(Especie, pk=especie_id)
+
+    if request.method == "POST":
+        especie.delete()
+        return redirect("especies")
+
+    return render(request, "especie_delete_confirm.html", {
+        "especie": especie
+    })
+
+    
 #BUSQUEDA MAS RESULTADO CON GBIF
 @usuario_login_requerido
 def gbif_especie(request):
@@ -430,3 +444,5 @@ def cambiar_rol(request, usuario_id):
         "usuario": usuario,
         "roles": ['Administrador', 'Investigador', 'Usuario']
     })
+
+#me voy a desvivir
