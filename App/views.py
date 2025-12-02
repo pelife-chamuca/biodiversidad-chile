@@ -183,13 +183,16 @@ def amenazas(request):
 @rol_requerido(["Usuario", "Investigador", "Administrador"])
 def create_amenaza(request):
     if request.method == "GET":
-        return render(request, "crear_amenaza.html", {"form": AmenazaForm})
-    else:
-        form = AmenazaForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('amenazas')
-        return render(request, "crear_amenaza.html", {"form": AmenazaForm, "error": "Error al crear."})
+        form = AmenazaForm()
+        return render(request, "crear_amenaza.html", {"form": form})
+
+    form = AmenazaForm(request.POST)
+    if form.is_valid():
+        form.save()
+        return redirect('amenazas')
+
+    return render(request, "crear_amenaza.html", {"form": form, "error": "Error al crear."})
+
 
 
 @usuario_login_requerido
