@@ -54,29 +54,34 @@ TEMPLATES = [
 WSGI_APPLICATION = "biodiversidad.wsgi.application"
 
 ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+print("=== ENV:", ENVIRONMENT)
+
 
 if ENVIRONMENT == "production":
+    # render/railway
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": os.getenv("MYSQL_NAME"),
-            "USER": os.getenv("MYSQL_USER"),
-            "PASSWORD": os.getenv("MYSQL_PASSWORD"),
-            "HOST": os.getenv("MYSQL_HOST"),
-            "PORT": os.getenv("MYSQL_PORT"),
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': os.getenv('MYSQL_NAME'),
+            'USER': os.getenv('MYSQL_USER'),
+            'PASSWORD': os.getenv('MYSQL_PASSWORD'),
+            'HOST': os.getenv('MYSQL_HOST'),
+            'PORT': os.getenv('MYSQL_PORT')
         }
     }
 else:
+    # LOCAL
     DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.mysql",
-            "NAME": "chaparrita",
-            "USER": "root",
-            "PASSWORD": "admin",
-            "HOST": "localhost",
-            "PORT": "3306",
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'chaparrita',
+            'USER': 'root',
+            'PASSWORD': 'admin',
+            'HOST': 'localhost',
+            'PORT': '3306'
         }
     }
+
 
 
 AUTH_PASSWORD_VALIDATORS = [
