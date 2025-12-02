@@ -465,5 +465,10 @@ def usuarios_delete(request, user_id):
 
     return render(request, "admin_usuarios_delete.html", {'usuario': usuario})
 
+@usuario_login_requerido
+@rol_requerido('Administrador')
+def panel_admin(request):
+    return render(request, "panel_admin.html")
+
 
 #me voy a desvivir

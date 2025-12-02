@@ -1,40 +1,12 @@
-{% extends 'base.html' %}
-
+{% extends "base.html" %}
 {% block content %}
 
-<div class="container mt-4">
-    <h1 class="fw-bold text-primary-custom mb-4">👑 Panel Administrativo</h1>
+<div class="container mt-5">
+    <h1 class="fw-bold">Panel de Administración</h1>
+    <p>Bienvenido, administrador.</p>
 
-    <table class="table table-bordered">
-        <thead class="table-success">
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Email</th>
-                <th>Rol</th>
-                <th>Comuna</th>
-                <th>Acciones</th>
-            </tr>
-        </thead>
-
-        <tbody>
-        {% for u in usuarios %}
-            <tr>
-                <td>{{ u.usuario_id }}</td>
-                <td>{{ u.nombre }}</td>
-                <td>{{ u.email }}</td>
-                <td>{{ u.rol }}</td>
-                <td>{{ u.comuna }}</td>
-                <td>
-                    <a href="{% url 'cambiar_rol' u.usuario_id %}"
-                       class="btn btn-warning btn-sm">
-                       Cambiar Rol
-                    </a>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <a href="{% url 'usuarios_list' %}" class="btn btn-primary">Gestionar Usuarios</a>
+    <a href="{% url 'amenazas' %}" class="btn btn-secondary">Gestionar Amenazas</a>
 
 </div>
 
