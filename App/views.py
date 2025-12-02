@@ -27,8 +27,9 @@ def home(request):
     amenazas = Amenaza.objects.all()
     amenaza_dia = random.choice(amenazas) if amenazas else None
 
+    # Listado ahora con múltiple imágenes por especie
     ranking_especies = [
-         {
+        {
             "nombre": "Picaflor de Arica",
             "estado": "En Peligro Crítico",
             "imagenes": [
@@ -36,22 +37,83 @@ def home(request):
                 "https://upload.wikimedia.org/wikipedia/commons/a/a4/Picaflor_arica.jpg",
             ],
         },
-        {"nombre": "Gato Andino", "estado": "En Peligro",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/d/d0/Leopardus_jacobita_2.jpg"},
-        {"nombre": "Rana Chilena", "estado": "Vulnerable", "imagen": "ranaChilena.jpg"},
-        {"nombre": "Ranita de Darwin", "estado": "En Peligro",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Chiloe_Wudl_2.jpg"},
-        {"nombre": "Puma", "estado": "Preocupación menor",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/8/8c/Puma_concolor_-_Ravine_Hall_-_Chester_Zoo%2C_England.jpg"},
-        {"nombre": "Cóndor Andino", "estado": "Casi amenazado",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Condor_peru.jpg"},
-        {"nombre": "Pudú", "estado": "Vulnerable",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Pudu_pudu.jpg"},
-        {"nombre": "Zorro Culpeo", "estado": "Preocupación menor",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/0/0f/Lycalopex_culpeus_%28Zorro_Culpeo%29.jpg"},
-        {"nombre": "Chungungo", "estado": "En Peligro",
-         "imagen": "https://upload.wikimedia.org/wikipedia/commons/3/35/Lontra_felina.jpg"},
+        {
+            "nombre": "Huemul",
+            "estado": "En Peligro",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/5/53/Huemul_%28Hippocamelus_bisulcus%29.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/0/0e/Huemul_Chile.jpg",
+            ],
+        },
+        {
+            "nombre": "Gato Andino",
+            "estado": "En Peligro",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/d/d0/Leopardus_jacobita_2.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/3/3e/Andean_cat_Bolivia.jpg",
+            ],
+        },
+        {
+            "nombre": "Rana Chilena",
+            "estado": "Vulnerable",
+            "imagenes": [
+                "/static/img/ranaChilena.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/4/49/Calyptocephalella_gayi_1.jpg",
+            ],
+        },
+        {
+            "nombre": "Ranita de Darwin",
+            "estado": "En Peligro",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/c/cb/Chiloe_Wudl_2.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/3/36/Rhinoderma_darwinii_female.jpg",
+            ],
+        },
+        {
+            "nombre": "Puma",
+            "estado": "Preocupación menor",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/8/8c/Puma_concolor_-_Ravine_Hall_-_Chester_Zoo%2C_England.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/3/3a/Puma_concolor_coryi.jpg",
+            ],
+        },
+        {
+            "nombre": "Cóndor Andino",
+            "estado": "Casi amenazado",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/1/1d/Condor_peru.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/2/26/Vultur_gryphus_-Peru_-flying-8.jpg",
+            ],
+        },
+        {
+            "nombre": "Pudú",
+            "estado": "Vulnerable",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/3/3c/Pudu_pudu.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/8/8f/Pudu_in_Chile.jpg",
+            ],
+        },
+        {
+            "nombre": "Zorro Culpeo",
+            "estado": "Preocupación menor",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/0/0f/Lycalopex_culpeus_%28Zorro_Culpeo%29.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/4/4c/Lycalopex_culpeus_-_Parque_Nacional_Lauca.jpg",
+            ],
+        },
+        {
+            "nombre": "Chungungo",
+            "estado": "En Peligro",
+            "imagenes": [
+                "https://upload.wikimedia.org/wikipedia/commons/3/35/Lontra_felina.jpg",
+                "https://upload.wikimedia.org/wikipedia/commons/4/45/Marine_otter.jpg",
+            ],
+        },
     ]
+
+    # Elegir imagen random para cada especie
+    for especie in ranking_especies:
+        especie["imagen"] = random.choice(especie["imagenes"])
 
     return render(request, "home.html", {
         "amenaza_dia": amenaza_dia,

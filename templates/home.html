@@ -63,8 +63,9 @@
         <div class="col-md-4">
             <div class="card specie-card shadow-sm h-100">
 
-                <!-- FOTO DE LA ESPECIE -->
-                <img src="{% static 'img/especies/' %}{{ item.imagen }}" class="specie-img">
+                <!-- FOTO RANDOM SEGÚN URL O STATIC -->
+                <img src="{% if 'http' in item.imagen %}{{ item.imagen }}{% else %}{% static item.imagen %}{% endif %}"
+                     class="specie-img">
 
                 <div class="card-body">
                     <h5 class="fw-bold">{{ item.nombre }}</h5>
