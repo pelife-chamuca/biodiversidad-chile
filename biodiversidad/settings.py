@@ -54,7 +54,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "biodiversidad.wsgi.application"
 
-ENVIRONMENT = os.getenv("ENVIRONMENT", "development")
+ENVIRONMENT = os.getenv("ENVIRONMENT", "production")
 print("=== ENV:", ENVIRONMENT)
 
 
